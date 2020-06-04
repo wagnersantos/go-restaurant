@@ -38,7 +38,12 @@ const Dashboard: React.FC = () => {
     food: Omit<IFoodPlate, 'id' | 'available'>,
   ): Promise<void> {
     try {
-      // TODO ADD A NEW FOOD PLATE TO THE API
+      const { data } = await api.post('/foods', {
+        ...food,
+        available: true,
+      });
+
+      setFoods([...foods, data]);
     } catch (err) {
       console.log(err);
     }
@@ -65,7 +70,7 @@ const Dashboard: React.FC = () => {
   function handleEditFood(food: IFoodPlate): void {
     // TODO SET THE CURRENT EDITING FOOD ID IN THE STATE
   }
-  console.log(modalOpen);
+
   return (
     <>
       <Header openModal={toggleModal} />
