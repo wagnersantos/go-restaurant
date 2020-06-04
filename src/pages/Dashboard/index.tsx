@@ -27,7 +27,8 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function loadFoods(): Promise<void> {
-      // TODO LOAD FOODS
+      const { data } = await api.get('/foods');
+      setFoods(data);
     }
 
     loadFoods();
@@ -64,7 +65,7 @@ const Dashboard: React.FC = () => {
   function handleEditFood(food: IFoodPlate): void {
     // TODO SET THE CURRENT EDITING FOOD ID IN THE STATE
   }
-
+  console.log(modalOpen);
   return (
     <>
       <Header openModal={toggleModal} />
